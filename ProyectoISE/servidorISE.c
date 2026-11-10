@@ -1,16 +1,23 @@
-
 #define _POSIX_C_SOURCE 200809L
 
-/*
-Autores: Juan Camilo Maldonado, Samuel Zeudec , Daniel Plazas
-Fichero: servidorISE.c
-Objetivo del fichero: Implementacion del Control Proceso Principal ISE. Toda la logica real
-(hilos, semaforos , pipe nominal y calculo del ISE).
-*/
+/*********************************************************************************************
+ * Pontificia Universidad Javeriana
+ *
+ * Autores: Daniel Plazas, Juan Camilo Maldonado, Samuel Zeudec
+ * Fecha: 4 de Noviembre 2026
+ * Materia: Sistemas Operativos
+ * Proyecto: Indicador de Sentimiento Economico (ISE)
+ * Fichero: servidorISE.c
+ * Tema: ServidorISE: procesos padre e hijo, hilos receptor, temporizador y
+ *       consumidores, semaforos y calculo del indicador
+ * Objetivo del fichero: Implementacion del Control Proceso Principal ISE. Toda la logica real
+ * (hilos, semaforos , pipe nominal y calculo del ISE).
+ **********************************************************************************************/
 
 
 #include <stdio.h>
-#include <stdlib.h> //Libreria para funciones como atoi, calloc , free y otras funciones relacionada con memoria
+#include <stdlib.h> //Libreria para strtol, calloc , free y otras funciones relacionada con memoria
+#include <limits.h> //Libreria para INT_MIN e INT_MAX (validar que el numero de una bandera cabe en un int)
 #include <string.h>
 #include <unistd.h>
 #include <fcntl.h> //Librearia para trabajar con archivos como O_RDWR
@@ -417,6 +424,20 @@ static void limpiar_recursos(void) {
 }
 
 /*
+Convierte el texto de una bandera a entero con strtol. Rechaza textos como "5x", vacios o demasiado grandes.
+Retorna 0 si es valido y -1 si no lo es.
+*/
+static int leer_entero(const char* texto, int* valor) {
+	char* resto_texto; // strtol deja aqui el primer caracter que no pudo convertir
+	errno = 0; // Se limpia errno para detectar desbordamiento
+	long numero = strtol(texto, &resto_texto, 10); // Convierte en base 10
+	if (errno != 0 || resto_texto == texto || *resto_texto != '\0') return -1; // Nada convertido o sobraron caracteres
+	if (numero < INT_MIN || numero > INT_MAX) return -1; // No cabe en un int
+	*valor = (int)numero; // Devuelve el valor validado
+	return 0;
+}
+
+/*
 Procesa los argumentos recibidos por linea de comandos utilizando la funcion getopt.
 */
 int servidor_parsear_argumentos(int argc, char* argv[]) {
@@ -430,13 +451,13 @@ int servidor_parsear_argumentos(int argc, char* argv[]) {
 		// Estructura de seleccion para procesar segun la letra de la bandera encontrada
 		switch (bandera_leida) {
 			// Opcion -b: asigna el tamano del buffer convirtiendo el argumento de texto a entero con atoi
-		case 'b': tam_buffer = atoi(optarg); recibio_tam_buffer = 1; break;
+		case 'b': if (leer_entero(optarg, &tam_buffer) != 0) { fprintf(stderr, "Error: -b debe ser un numero entero (se recibio '%s').\n", optarg); return 1; } recibio_tam_buffer = 1; break;
 			// Opcion -p: copia de forma segura el nombre del pipe recibido hacia la variable global correspondiente
 		case 'p': strncpy(nombre_pipe, optarg, sizeof(nombre_pipe) - 1); recibio_nombre_pipe = 1; break;
 			// Opcion -t: asigna el tiempo limite del servidor convirtiendo el argumento de texto a entero
-		case 't': tiempo_limite = atoi(optarg); recibio_tiempo = 1; break;
+		case 't': if (leer_entero(optarg, &tiempo_limite) != 0) { fprintf(stderr, "Error: -t debe ser un numero entero (se recibio '%s').\n", optarg); return 1; } recibio_tiempo = 1; break;
 			// Opcion -a: asigna el numero maximo de agentes permitidos convirtiendo el argumento a entero
-		case 'a': hilos_max = atoi(optarg); recibio_cantidad_agentes = 1; break;
+		case 'a': if (leer_entero(optarg, &hilos_max) != 0) { fprintf(stderr, "Error: -a debe ser un numero entero (se recibio '%s').\n", optarg); return 1; } recibio_cantidad_agentes = 1; break;
 			// Caso por defecto si se ingresa una bandera desconocida: imprime la ayuda de uso y retorna un codigo de error (1)
 		default:
 			fprintf(stderr, "Uso: %s -b <tamB> -p <PipeN> -t <time> -a <hilos>\n", argv[0]);

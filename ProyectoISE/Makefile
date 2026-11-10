@@ -1,19 +1,19 @@
-#########################################################
-#                 Pontificia Universidad Javeriana
+################################################################
+# Pontificia Universidad Javeriana
 #
-#       Autores: Juan Camilo Maldonado, Samuel Zeudec, Daniel Plazas
-#       Fecha: 05/11/2026
-#       Objetivo: Automatizador para compilar el proyecto ISE
-#                 (servidorISE, agentePais y generadorCSV)
-#########################################################
- 
+# Autores: Juan Camilo Maldonado, Samuel Zeudec, Daniel Plazas
+# Fecha: 4 de Noviembre 2026
+# Objetivo: Automatizador para compilar el proyecto ISE
+# (servidorISE, agentePais y generadorCSV)
+#################################################################
+
 GCC = gcc
 FLAGS = -Wall -Wextra -pthread
  
-# Se listan todos los programas que se van a compilar
+
 PROGRAMAS = servidorISE agentePais generadorCSV
  
-# Compilar todos los programas de una vez
+
 all: $(PROGRAMAS)
  
 # El servidor se arma con main.c y servidorISE.c (usa hilos y semaforos)

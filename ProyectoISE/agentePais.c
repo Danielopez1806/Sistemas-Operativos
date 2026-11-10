@@ -1,16 +1,19 @@
 #define _POSIX_C_SOURCE 200809L //Habilita las funciones POSIX (getopt, getline, etc.)
 
-/*
-Autores: Juan Camilo Maldonado, Samuel Zeudec, Daniel Plazas
-Fichero: agentePais.c
-Objetivo del fichero: Agente de lectura de encuestas por pais. Lee el fichero encuestas_<PAIS>.csv que
-produce generadorCSV, se conecta al servidor ISE por el pipe nominal y envia las encuestas mostrando
-el progreso por lotes.
-
-Formato del CSV (el que escribe generadorCSV):
-  ID_Encuesta,ID_Pais,Pais,Sector,ID_Sector,Sentimiento
-Protocolo con el servidor (servidorISE.h): MSG_CONEXION al iniciar, un MSG_DATO por encuesta y MSG_FIN al terminar.
-*/
+/***************************************************************************************
+ * Pontificia Universidad Javeriana
+ *
+ * Autores: Daniel Plazas, Juan Camilo Maldonado, Samuel Zeudec
+ * Fecha: 4 de Noviembre 2026
+ * Materia: Sistemas Operativos
+ * Proyecto: Indicador de Sentimiento Economico (ISE)
+ * Fichero: agentePais.c
+ * Tema: Agente de lectura: lee el CSV de un pais y envia las encuestas al
+ *       servidor por el pipe nominal
+ * Objetivo del fichero: Lee el fichero encuestas_<PAIS>.csv que produce generadorCSV,
+ * se conecta al servidor ISE por el pipe nominal y envia las encuestas mostrando
+ * el progreso por lotes.
+ ***************************************************************************************/
 
 #include <stdio.h> //Para printf, fprintf, fopen, getline, rewind y snprintf
 #include <stdlib.h> //Para malloc, free, strtol, strtod, EXIT_SUCCESS y EXIT_FAILURE

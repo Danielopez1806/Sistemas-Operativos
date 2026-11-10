@@ -1,9 +1,15 @@
-/*
-Autores: Juan Camilo Maldonado, Samuel Zeudec, Daniel Plazas
-Fichero: main.c
-Objetivo del fichero: Punto de entrada del servidor ISE. Solo llama en orden a las funciones
-publicas de servidorISE.h: leer los argumentos, validarlos y ejecutar el servidor.
-*/
+/*************************************************************************************
+ * Pontificia Universidad Javeriana
+ *
+ * Autores: Daniel Plazas, Juan Camilo Maldonado, Samuel Zeudec
+ * Fecha: 4 de Noviembre 2026
+ * Materia: Sistemas Operativos
+ * Proyecto: Indicador de Sentimiento Economico (ISE)
+ * Fichero: main.c
+ * Tema: Punto de entrada del servidor ISE
+ * Objetivo del fichero: Solo llama en orden a las funciones
+ * publicas de servidorISE.h: leer los argumentos, validarlos y ejecutar el servidor.
+ *************************************************************************************/
 
 #include "servidorISE.h" //Interfaz publica del servidor (parsear, validar y ejecutar)
 

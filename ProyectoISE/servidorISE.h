@@ -2,13 +2,22 @@
 #ifndef SERVIDOR_ISE_H
 #define SERVIDOR_ISE_H
 
-/*
-Autores: Juan Camilo Maldonado, Samuel Zeudec, Daniel Plazas
-Fichero: servidorISE.h
-Objetivo del fichero: Archivo de cabecera que define la interfaz publica del modulo servidorISE.
-Contiene la estructura de los mensajes de encuesta, los tipos enumerados y las funciones
-principales accesibles desde otros modulos como main.c.
-*/
+/**************************************************************************************************
+ * Pontificia Universidad Javeriana
+ *
+ * Autores: Daniel Plazas, Juan Camilo Maldonado, Samuel Zeudec
+ * Fecha: 4 de Noviembre 2026
+ * Materia: Sistemas Operativos
+ * Proyecto: Indicador de Sentimiento Economico (ISE)
+ * Fichero: servidorISE.h
+ * Tema: Interfaz publica del servidor: protocolo de mensajes y funciones
+ *       publicas (parsear, validar y ejecutar)
+ * Objetivo del fichero: Archivo de cabecera que define la interfaz publica del modulo servidorISE.
+ * Contiene la estructura de los mensajes de encuesta, los tipos enumerados y las funciones
+ * principales accesibles desde otros modulos como main.
+ ***************************************************************************************************/
+
+
 
 //Aqui va el protocolo de los mensajes
 

@@ -1,16 +1,23 @@
-#define _POSIX_C_SOURCE 200809L 
-/*
-Autores: Juan Camilo Maldonado, Samuel Zeudec Malaver , Daniel Plazas
-Fichero: generadorCSV.c
-Objetivo del fichero: Generar el fichero encuestas_<PAIS>.csv con encuestas aleatorias por sector,
-segun los maximos de la Tabla 1 del enunciado y el porcentaje que pide el usuario.
-*/
+#define _POSIX_C_SOURCE 200809L
 
-#include <stdio.h> 
-#include <stdlib.h> 
-#include <string.h> 
+/****************************************************************************************************
+ * Pontificia Universidad Javeriana
+ *
+ * Autores: Daniel Plazas, Juan Camilo Maldonado, Samuel Zeudec
+ * Fecha: 4 de Noviembre 2026
+ * Materia: Sistemas Operativos
+ * Proyecto: Indicador de Sentimiento Economico (ISE)
+ * Fichero: generadorCSV.c
+ * Tema: Generador de encuestas: crea encuestas_<PAIS>.csv
+ * Objetivo del fichero: Generar el fichero encuestas_<PAIS>.csv con encuestas aleatorias por sector,
+ * segun los maximos de la Tabla 1 del enunciado y el porcentaje que pide el usuario.
+ *****************************************************************************************************/
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include <ctype.h> // Libreria para toupper (pasar la sigla del pais a mayusculas)
-#include <errno.h> 
+#include <errno.h> // Libreria para errno
 #include <time.h> // Libreria para time(), que se usa para sembrar el generador aleatorio
 #include <unistd.h> // Libreria para getopt (leer las banderas) y getpid
 
@@ -19,12 +26,12 @@ segun los maximos de la Tabla 1 del enunciado y el porcentaje que pide el usuari
 #define NUM_SECTORES    5   // Sectores Industria, Servicios, Consumidores, Comercio, Construccion
 #define NUM_PAISES      3   // Paises ES, FR e IT
 
-// Nombres de los sectores tal como se escriben dentro del CSV 
+// Nombres de los sectores tal como se escriben dentro del CSV
 static const char* NOMBRE_SECTOR_CSV[NUM_SECTORES] = { "Industria", "Servicios", "Consumidores", "Comercio", "Construccion" };
 
-// Nombres para mostrar en pantalla 
+// Nombres para mostrar en pantalla
 // (ya traen espacios para que las columnas queden alineadas)
-static const char* NOMBRE_SECTOR_PANTALLA[NUM_SECTORES] = { "Industria    ", "Servicios    ", "Consumidores", "Comercio     ", "Construcci n" };
+static const char* NOMBRE_SECTOR_PANTALLA[NUM_SECTORES] = { "Industria    ", "Servicios    ", "Consumidores", "Comercio     ", "Construcción" };
 
 // Informacion que se guarda para cada pais
 typedef struct {

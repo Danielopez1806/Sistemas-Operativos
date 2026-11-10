@@ -8,8 +8,6 @@ Soy estudiante de Ingeniería de Sistemas en la Pontificia Universidad Javeriana
 -  Me interesa la programación y el desarrollo de software.
 -  Aprendiendo cada día, y mejor cuando me toca explicar lo que hice.
 
-Más abajo está el proyecto. Si buscas solo lo técnico, salta a [Indicador de Sentimiento Económico (ISE)](#indicador-de-sentimiento-económico-ise).
-
 ---
 
 # Indicador de Sentimiento Económico (ISE)

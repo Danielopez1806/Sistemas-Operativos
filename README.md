@@ -187,12 +187,6 @@ La carpeta `DOCS(SUSTENTACION)` contiene el documento del proyecto y el video de
 - Linux y herramientas de terminal.
 - Git y GitHub.
 
-##  Lo que me dejó este proyecto
-
-- Cómo coordinar varios procesos e hilos sin perder datos: semáforos, mutex y buffers circulares.
-- Que un problema de concurrencia se entiende mejor probándolo con casos extremos (buffer de tamaño 1, tres agentes a la vez, un agente que llega tarde).
-- A medir antes de opinar: el programa de tiempos me mostró cuánto pesa el tamaño del buffer.
-- A trabajar en equipo y a documentar lo que hacemos para poder explicarlo.
 
 ##  Otros proyectos
 

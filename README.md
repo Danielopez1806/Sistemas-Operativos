@@ -171,7 +171,7 @@ Con un buffer de tamaño 1, 6000 encuestas tardan 0,267 s, unas diez veces más 
 ## Documentación
 
 - 🎥 **Video de la sustentación:** [ver en YouTube](https://youtu.be/QvJGfooIVXc)
--  La carpeta `Docs(Sustentacion)` contiene el documento del proyecto (Word y PDF) y el video de la sustentación.
+-  La carpeta `Docs(Sustentacion)` contiene el documento del proyecto (PDF) y el video de la sustentación.
 
 ---
 
